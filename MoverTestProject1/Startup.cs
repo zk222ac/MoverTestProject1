@@ -8,7 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MoverTestApp.Interface;
 using MoverTestApp.Model;
+using MoverTestApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +30,8 @@ namespace MoverTestProject1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add DI services
+            services.AddScoped<IInventory, InventoryRepository>();
             // Add database service here 
             services.AddDbContext<InventoryContext>(c => c.UseSqlite("Data source=Inventory.db"));
             services.AddControllers();

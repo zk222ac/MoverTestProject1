@@ -3,6 +3,7 @@ using MoverTestApp.Interface;
 using MoverTestApp.Model;
 using MoverTestApp.Repository;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MoverTestProject1.Controllers
 {
@@ -10,18 +11,22 @@ namespace MoverTestProject1.Controllers
     [ApiController]
     public class InventorysController : ControllerBase
     {
-        private IInventory inventory = new InventoryRepository();
+        private readonly InventoryRepository _inventoryRepo;
+        public InventorysController(InventoryRepository inventoryRepo)
+        {
+            _inventoryRepo = inventoryRepo;
+        }
 
         [HttpGet]
-        public ActionResult<List<Inventory>> GetAllInventory()
+        public async Task<IEnumerable<Inventory>> GetAllInventory()
         {
-            return inventory.GetAllInventory();
+            return await _inventoryRepo.GetAllInventory();
         }
 
         [HttpGet("{sku}")]
-        public ActionResult<Inventory> GetInventoryById(int sku)
+        public async Task<ActionResult<Inventory>> GetInventoryById(int sku)
         {
-            return inventory.GetInventoryBySku(sku);
+            return await _inventoryRepo.GetInventoryBySku(sku);
         }
     }
 }

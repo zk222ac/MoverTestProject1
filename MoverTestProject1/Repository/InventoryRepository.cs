@@ -1,28 +1,54 @@
 ﻿using MoverTestApp.Interface;
 using MoverTestApp.Model;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace MoverTestApp.Repository
 {
     public class InventoryRepository : IInventory
     {
-        List<Inventory> lisAllInvent = new List<Inventory>()
+        //List<Inventory> lisAllInvent = new List<Inventory>()
+        //{
+        //    new Inventory(){SKU = 1 , Description = "Inventory 1" , Quantity = 1},
+        //    new Inventory(){SKU = 2 , Description = "Inventory 2" , Quantity = 2},
+        //    new Inventory(){SKU = 3 , Description = "Inventory 3" , Quantity = 4},
+        //    new Inventory(){SKU = 4 , Description = "Inventory 4" , Quantity = 5},
+        //    new Inventory(){SKU = 5 , Description = "Inventory 5" , Quantity = 6}
+        //};
+        private readonly InventoryContext _context;
+        public InventoryRepository(InventoryContext context)
         {
-            new Inventory(){SKU = 1 , Description = "Inventory 1" , Quantity = 1},
-            new Inventory(){SKU = 2 , Description = "Inventory 2" , Quantity = 2},
-            new Inventory(){SKU = 3 , Description = "Inventory 3" , Quantity = 4},
-            new Inventory(){SKU = 4 , Description = "Inventory 4" , Quantity = 5},
-            new Inventory(){SKU = 5 , Description = "Inventory 5" , Quantity = 6}
-        };
-        public List<Inventory> GetAllInventory()
-        {
-            return lisAllInvent;
+            _context = context;
         }
 
-        public Inventory GetInventoryBySku(int sku)
+        public Task<Inventory> CreateInventoryKnownSku(int sku, Inventory inventory)
         {
-            return lisAllInvent.FirstOrDefault(x => x.SKU == sku);
+            throw new System.NotImplementedException();
+        }
+
+        public async Task<Inventory> CreateInventoryUnknownSku(Inventory inventory)
+        {
+            _context.Inventorys.Add(inventory);
+            await _context.SaveChangesAsync();
+            return inventory;
+        }
+
+        public async  Task<IEnumerable<Inventory>> GetAllInventory()
+        {
+            return await _context.Inventorys.ToListAsync();
+        }
+
+        public async Task<Inventory> GetInventoryBySku(int sku)
+        {
+            return await _context.Inventorys.FindAsync(sku);
+        }
+
+        public async Task RemoveQuantitySku(int sku)
+        {
+            var removeDefinedQuantityBySpecificSku = await _context.Inventorys.FindAsync(sku);
+            _context.Inventorys.Remove(removeDefinedQuantityBySpecificSku);
+            await _context.SaveChangesAsync();
         }
     }
 }
