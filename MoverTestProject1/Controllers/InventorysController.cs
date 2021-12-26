@@ -28,5 +28,6 @@ namespace MoverTestProject1.Controllers
         {
             return await _inventoryRepo.GetInventoryBySku(sku);
         }
+
     }
 }
