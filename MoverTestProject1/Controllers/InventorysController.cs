@@ -61,5 +61,13 @@ namespace MoverTestProject1.Controllers
             return NoContent();
         }
 
+        [HttpGet]
+        [Route("Hours/{hour}/Minutes/{minutes}")]
+        public async Task<ActionResult<double>> CreateLeastAngleWatchHands(int hour , int minutes)
+        {
+            var angle = await Angle.AngleClock(hour, minutes);
+            return angle;
+        }
+
     }
 }
