@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MoverTestApp.Repository
 {
-    public class InventoryRepository : IInventory
+    public class InventoryRepository : IInventoryRepository
     {
         //List<Inventory> lisAllInvent = new List<Inventory>()
         //{
@@ -34,21 +34,27 @@ namespace MoverTestApp.Repository
             return inventory;
         }
 
-        public async  Task<IEnumerable<Inventory>> GetAllInventory()
+        public async Task<IEnumerable<Inventory>> Get()
         {
             return await _context.Inventorys.ToListAsync();
         }
 
-        public async Task<Inventory> GetInventoryBySku(int sku)
+        public async Task<Inventory> Get(int sku)
         {
             return await _context.Inventorys.FindAsync(sku);
         }
-
-        public async Task RemoveQuantitySku(int sku)
+        public async Task DeleteInventory(int sku)
         {
             var removeDefinedQuantityBySpecificSku = await _context.Inventorys.FindAsync(sku);
             _context.Inventorys.Remove(removeDefinedQuantityBySpecificSku);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task Update(Inventory Invent)
+        {
+            _context.Entry(Invent).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
         }
     }
 }

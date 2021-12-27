@@ -5,7 +5,7 @@ namespace MoverTestApp.Model
     {
         public InventoryContext(DbContextOptions<InventoryContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            Database.EnsureCreatedAsync();
         }
 
         public DbSet<Inventory> Inventorys { get; set; }

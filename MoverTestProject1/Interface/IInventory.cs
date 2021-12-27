@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 
 namespace MoverTestApp.Interface
 {
-   public interface IInventory
+   public interface IInventoryRepository
     {
         // List of all inventory
-        Task<IEnumerable<Inventory>> GetAllInventory();
+        Task<IEnumerable<Inventory>> Get();
         // Get inventory by specific sku 
-        Task<Inventory> GetInventoryBySku(int sku);
+        Task<Inventory> Get(int sku);
 
         // Adding inventory with unknown SKU, it should create new.
         Task<Inventory> CreateInventoryUnknownSku(Inventory inventory);
@@ -18,6 +18,10 @@ namespace MoverTestApp.Interface
         Task<Inventory> CreateInventoryKnownSku(int sku , Inventory inventory);
 
         // Remove a defined quantity for a specific SKU
-        Task RemoveQuantitySku(int sku);
+        Task DeleteInventory(int sku);
+
+        // Update the Inventory
+        Task Update(Inventory Invent);
+        
     }
 }

@@ -31,7 +31,7 @@ namespace MoverTestProject1
         public void ConfigureServices(IServiceCollection services)
         {
             // Add DI services
-            services.AddScoped<IInventory, InventoryRepository>();
+            services.AddScoped<IInventoryRepository, InventoryRepository>();
             // Add database service here 
             services.AddDbContext<InventoryContext>(c => c.UseSqlite("Data source=Inventory.db"));
             services.AddControllers();
