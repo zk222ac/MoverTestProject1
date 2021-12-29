@@ -3,6 +3,8 @@ using MoverTestApp.Model;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MoverTestApp.Repository
 {
@@ -55,6 +57,15 @@ namespace MoverTestApp.Repository
             _context.Entry(Invent).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
+        }        
+        public async Task UpdateQuantityPatchAsync(int sku, JsonPatchDocument jpd)
+        {
+            var inventory = await _context.Inventorys.FindAsync(sku); 
+            if(inventory != null) 
+            {
+                jpd.ApplyTo(inventory);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

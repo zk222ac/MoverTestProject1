@@ -1,4 +1,5 @@
-﻿using MoverTestApp.Model;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using MoverTestApp.Model;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -22,6 +23,8 @@ namespace MoverTestApp.Interface
 
         // Update the Inventory
         Task Update(Inventory Invent);
-        
+
+        // Update the Quantity for specfic sku
+        Task UpdateQuantityPatchAsync(int sku, JsonPatchDocument jpd);        
     }
 }

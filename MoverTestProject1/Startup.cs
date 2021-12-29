@@ -34,7 +34,7 @@ namespace MoverTestProject1
             services.AddScoped<IInventoryRepository, InventoryRepository>();
             // Add database service here 
             services.AddDbContext<InventoryContext>(c => c.UseSqlite("Data source=Inventory.db"));
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MoverTestProject1", Version = "v1" });
