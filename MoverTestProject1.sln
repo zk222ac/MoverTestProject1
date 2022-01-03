@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoverTestProject1", "MoverTestProject1\MoverTestProject1.csproj", "{C8B536E3-7012-435E-8455-FC9C7443D6FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoverTestProject1", "MoverTestProject1\MoverTestProject1.csproj", "{C8B536E3-7012-435E-8455-FC9C7443D6FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestMoverProject", "UnitTestMoverProject\UnitTestMoverProject.csproj", "{165792A6-48A4-49DA-A642-09FBA1FD49B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C8B536E3-7012-435E-8455-FC9C7443D6FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8B536E3-7012-435E-8455-FC9C7443D6FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8B536E3-7012-435E-8455-FC9C7443D6FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{165792A6-48A4-49DA-A642-09FBA1FD49B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{165792A6-48A4-49DA-A642-09FBA1FD49B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{165792A6-48A4-49DA-A642-09FBA1FD49B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{165792A6-48A4-49DA-A642-09FBA1FD49B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
