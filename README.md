@@ -56,3 +56,10 @@ OPtype : mean we replace the method property value
 Path : mean property name 
 value : new value which we replace to old one
 
+## Follow the Unit Test: 
+I have added one unit test Method Get all return inventory. 
+ . I use FakeitEasy Dll for dummy data to provide controller class.
+ . Add Xunit .NET Unit Test Project
+
+Due to short time span I added only one unit test method.
+
